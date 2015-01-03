@@ -1,36 +1,43 @@
 <!DOCTYPE html>
 <html>
-
   <head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="N402.GitHub.io : ">
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/n402.css">
     <title>N402</title>
   </head>
   <body>
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <h1 id="project_title">N402</h1>
-          <h2 id="project_tagline"></h2>
-        </header>
+    <div id="main_content_wrap">
+      <div class="center">
+        <h1 class="large light-color">
+          It's been <span class="date" id="days"></span> days,
+          <br />
+          since we known each others
+        </h1>
+        <span id="seconds"></span>
+      </div>
     </div>
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h3><a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Welcome to N402.</h3>
-      </section>
-    </div>
-
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
-
-    
-
+    <script>
+    (function () {
+      var theDayWeKnowEachOthers = new Date(2011, 9, 1);
+      var mmSecond2Day = function (seconds) {
+        return (seconds / 3600000 / 24);
+      }
+      var dateDiff = function (fromDate, toDate) {
+        return (toDate.getTime() - fromDate.getTime());
+      }
+      var todaySecondsDiff = function(fromDate) {
+        return dateDiff(fromDate, new Date());
+      }
+      var todayDiff = function (fromDate) {
+        return mmSecond2Day(todaySecondsDiff(fromDate)); 
+      }
+      document.getElementById('days').innerHTML = Math.floor(todayDiff(theDayWeKnowEachOthers));
+      setInterval(function() {
+        document.getElementById('seconds').innerHTML = Math.floor(todaySecondsDiff(theDayWeKnowEachOthers));
+      }, 100);
+    })();
+    </script>
   </body>
 </html>
+
